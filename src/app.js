@@ -40,14 +40,14 @@ const data = [
 // Write GET endpoint for sending all the products to client here
 // Endpoint - /api/v1/products
 app.get("/api/v1/products", (req, res) => {
-  res.statusCode = 200;
-  res.end(
-    JSON.stringify({
-      status: "success",
-      message: "Product fetched successfully",
-      data: { product: data },
-    })
-  );
+  if (data === null) {
+    res.status(404).json({ message: "Product not found" });
+  }
+  res.status(200).json({
+    status: "success",
+    message: "Product fetched successfully",
+    data: { product: data },
+  });
 });
 
 module.exports = app;
