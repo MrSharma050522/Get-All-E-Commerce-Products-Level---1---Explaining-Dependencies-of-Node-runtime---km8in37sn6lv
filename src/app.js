@@ -41,11 +41,11 @@ const data = [
 // Endpoint - /api/v1/products
 app.get("/api/v1/products", (req, res) => {
   res.statusCode = 200;
-  res.send(
+  res.end(
     JSON.stringify({
       status: "success",
       message: "Product fetched successfully",
-      data: data,
+      data: { product: data },
     })
   );
 });
