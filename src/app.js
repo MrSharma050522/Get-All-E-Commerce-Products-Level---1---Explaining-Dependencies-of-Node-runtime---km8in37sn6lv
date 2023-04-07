@@ -7,34 +7,17 @@ const products = JSON.parse(fs.readFileSync(`${__dirname}/data/products.json`));
 
 // Middlewares
 app.use(express.json());
-const data = [
-  {
-    id: 1,
-    name: "Nirma",
-    price: 2000,
-    quantity: 50,
-  },
-  {
-    id: 2,
-    name: "Rin",
-    price: 2500,
-    quantity: 50,
-  },
-];
 
-// fs.readFile("data/products.json", (err, data) => {
-//   console.log(data);
-// });
 // Write GET endpoint for sending all the products to client here
 // Endpoint - /api/v1/products
 app.get("/api/v1/products", (req, res) => {
-  if (data === null) {
+  if (products === null) {
     res.status(404).json({ message: "Product not found" });
   }
   res.status(200).json({
     status: "success",
     message: "Product fetched successfully",
-    data: { product: data },
+    data: { product: products },
   });
 });
 
